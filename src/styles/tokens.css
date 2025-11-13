@@ -94,8 +94,8 @@
 
   --color-text-primary: #2D1B2E;    /* Deep plum */
   --color-text-secondary: #6B4E71;  /* Muted purple */
-  --color-text-tertiary: #A67C96;   /* Dusty mauve */
-  --color-text-muted: #D4A5C0;      /* Soft lavender */
+  --color-text-tertiary: #7D5873;   /* Dusty mauve - darkened for WCAG AA (was #A67C96) */
+  --color-text-muted: #9B6B8A;      /* Soft lavender - darkened for WCAG AA (was #D4A5C0) */
 
   --color-border-light: #FFD1E3;
   --color-border-base: #FFB4D1;
@@ -114,8 +114,8 @@
 
   --color-text-primary: #2C2C2C;    /* Ink */
   --color-text-secondary: #4A4A4A;
-  --color-text-tertiary: #6E7C87;
-  --color-text-muted: #A5ADB5;
+  --color-text-tertiary: #5A6770;   /* Darkened for WCAG AA (was #6E7C87) */
+  --color-text-muted: #727A82;      /* Darkened for WCAG AA (was #A5ADB5) */
 
   --color-border-light: #E3DED5;
   --color-border-base: #C8C3BA;
@@ -135,7 +135,7 @@
   --color-text-primary: #1A1A1A;    /* Ink - deeper */
   --color-text-secondary: #3D3D3D;
   --color-text-tertiary: #6B5D66;
-  --color-text-muted: #A39199;
+  --color-text-muted: #77656F;      /* Darkened for WCAG AA (was #A39199) */
 
   --color-border-light: #E8D9DF;
   --color-border-base: #D0BDC5;

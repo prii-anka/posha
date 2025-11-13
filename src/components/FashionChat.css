@@ -84,6 +84,11 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.prompt-button:focus-visible {
+  outline: 3px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
 /* Messages */
 .chat-messages {
   flex: 1;
@@ -276,6 +281,11 @@
 .send-button:hover:not(:disabled) {
   background: var(--color-accent-secondary);
   transform: scale(1.05);
+}
+
+.send-button:focus-visible {
+  outline: 3px solid var(--color-accent-primary);
+  outline-offset: 2px;
 }
 
 .send-button:disabled {

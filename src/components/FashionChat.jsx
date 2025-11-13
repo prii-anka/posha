@@ -157,6 +157,7 @@ function FashionChat() {
                   key={index}
                   className="prompt-button"
                   onClick={() => handlePromptClick(prompt)}
+                  aria-label={`Ask: ${prompt}`}
                 >
                   {prompt}
                 </button>
@@ -165,19 +166,22 @@ function FashionChat() {
           </div>
         </div>
       ) : (
-        <div className="chat-messages">
+        <div className="chat-messages" role="log" aria-live="polite" aria-label="Chat conversation">
           {messages.map((message) => (
             <div key={message.id} className={`message ${message.type}`}>
-              <div className="message-avatar">
+              <div className="message-avatar" aria-hidden="true">
                 {message.type === 'ai' ? '👗' : '👤'}
               </div>
               <div className="message-content">
                 <p className="message-text">{message.text}</p>
                 {message.items && message.items.length > 0 && (
-                  <div className="message-items">
+                  <div className="message-items" aria-label="Suggested outfit items">
                     {message.items.map((item, index) => (
                       <div key={index} className="suggested-item">
-                        <img src={item.image} alt={item.name || item.category} />
+                        <img
+                          src={item.image}
+                          alt={`${item.name || item.category} - ${item.color || ''} ${item.fabric || ''}`.trim()}
+                        />
                         <p className="item-name">{item.name || item.category}</p>
                       </div>
                     ))}
@@ -188,10 +192,10 @@ function FashionChat() {
           ))}
 
           {isTyping && (
-            <div className="message ai">
-              <div className="message-avatar">👗</div>
+            <div className="message ai" aria-live="polite" aria-label="Posha is typing">
+              <div className="message-avatar" aria-hidden="true">👗</div>
               <div className="message-content">
-                <div className="typing-indicator">
+                <div className="typing-indicator" aria-label="Typing indicator">
                   <span></span>
                   <span></span>
                   <span></span>
@@ -213,13 +217,15 @@ function FashionChat() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             rows={1}
+            aria-label="Fashion chat message input"
           />
           <button
             className="send-button"
             onClick={handleSend}
             disabled={!inputValue.trim()}
+            aria-label="Send message"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
             </svg>
           </button>

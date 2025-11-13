@@ -71,8 +71,10 @@ function TopBar() {
             className="settings-btn"
             onClick={() => setShowSettings(!showSettings)}
             aria-label="Settings"
+            aria-haspopup="dialog"
+            aria-expanded={showSettings}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
               <path
                 d="M12 1v6m0 6v10M1 12h6m6 0h10"
@@ -89,13 +91,19 @@ function TopBar() {
 
       {showSettings && (
         <div className="settings-modal-overlay" onClick={() => setShowSettings(false)}>
-          <div className="settings-modal" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="settings-modal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="settings-title"
+          >
             <div className="settings-header">
-              <h2>Settings</h2>
+              <h2 id="settings-title">Settings</h2>
               <button
                 className="close-btn"
                 onClick={() => setShowSettings(false)}
-                aria-label="Close"
+                aria-label="Close settings"
               >
                 ✕
               </button>
@@ -105,12 +113,15 @@ function TopBar() {
               <section className="settings-section">
                 <h3>Theme</h3>
                 <p className="settings-description">Choose your aesthetic preference</p>
-                <div className="theme-options">
+                <div className="theme-options" role="radiogroup" aria-label="Theme selection">
                   {Object.values(themes).map((themeKey) => (
                     <button
                       key={themeKey}
                       className={`theme-option-btn ${theme === themeKey ? 'active' : ''}`}
                       onClick={() => setTheme(themeKey)}
+                      role="radio"
+                      aria-checked={theme === themeKey}
+                      aria-label={`${themeLabels[themeKey]} theme`}
                     >
                       {themeLabels[themeKey]}
                     </button>

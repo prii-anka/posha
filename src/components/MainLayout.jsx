@@ -21,6 +21,11 @@ function MainLayout({ children }) {
 
   return (
     <div className="main-layout">
+      {/* Skip to main content link */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       {/* Mobile Header with Hamburger */}
       {isMobile && (
         <div className="mobile-header">
@@ -28,8 +33,9 @@ function MainLayout({ children }) {
             className="mobile-menu-button"
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-label="Toggle menu"
+            aria-expanded={sidebarOpen}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M3 12h18M3 6h18M3 18h18" />
             </svg>
           </button>
@@ -48,11 +54,12 @@ function MainLayout({ children }) {
         <div
           className="sidebar-overlay"
           onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
         />
       )}
 
       {/* Main Content */}
-      <main className="main-content">
+      <main id="main-content" className="main-content" role="main">
         {children}
       </main>
     </div>

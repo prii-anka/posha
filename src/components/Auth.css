@@ -1,3 +1,16 @@
+/* Utility for screen reader only content */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .auth-container {
   min-height: 100vh;
   display: flex;
@@ -123,9 +136,10 @@
   background: #FEE;
   border: 1px solid #FCC;
   border-radius: var(--radius-base);
-  color: #C33;
+  color: #A12;  /* Darkened for WCAG AA compliance (was #C33) */
   font-size: var(--font-size-sm);
   margin-bottom: var(--space-2);
+  role: alert;  /* Announce errors to screen readers */
 }
 
 .form-group {

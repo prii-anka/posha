@@ -134,8 +134,9 @@ function Auth({ onComplete, onSkip }) {
             className="auth-social-btn google"
             onClick={handleGoogleAuth}
             disabled={loading}
+            aria-label="Sign in with Google"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M19.6 10.227c0-.709-.064-1.39-.182-2.045H10v3.868h5.382a4.6 4.6 0 01-1.996 3.018v2.51h3.232c1.891-1.742 2.982-4.305 2.982-7.35z" fill="#4285F4"/>
               <path d="M10 20c2.7 0 4.964-.895 6.618-2.423l-3.232-2.509c-.895.6-2.04.955-3.386.955-2.605 0-4.81-1.76-5.595-4.123H1.064v2.59A9.996 9.996 0 0010 20z" fill="#34A853"/>
               <path d="M4.405 11.9c-.2-.6-.314-1.24-.314-1.9 0-.66.114-1.3.314-1.9V5.51H1.064A9.996 9.996 0 000 10c0 1.614.386 3.14 1.064 4.49l3.34-2.59z" fill="#FBBC05"/>
@@ -152,7 +153,7 @@ function Auth({ onComplete, onSkip }) {
         {/* Email Auth Form */}
         <form onSubmit={handleEmailAuth} className="auth-form">
           {error && (
-            <div className="auth-error">
+            <div className="auth-error" role="alert" aria-live="polite">
               {error}
             </div>
           )}
@@ -167,6 +168,7 @@ function Auth({ onComplete, onSkip }) {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your name"
                 required
+                aria-required="true"
               />
             </div>
           )}
@@ -180,6 +182,8 @@ function Auth({ onComplete, onSkip }) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
+              aria-required="true"
+              aria-invalid={error && error.includes('email') ? 'true' : 'false'}
             />
           </div>
 
@@ -193,7 +197,13 @@ function Auth({ onComplete, onSkip }) {
               placeholder="••••••••"
               required
               minLength="6"
+              aria-required="true"
+              aria-invalid={error && error.includes('password') ? 'true' : 'false'}
+              aria-describedby="password-requirements"
             />
+            <span id="password-requirements" className="visually-hidden">
+              Password must be at least 6 characters long
+            </span>
           </div>
 
           <button type="submit" className="auth-submit-btn" disabled={loading}>
