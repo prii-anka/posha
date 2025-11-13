@@ -1,0 +1,373 @@
+/* =====================================================
+   90s FASHION MAGAZINE EDITORIAL STYLE
+   Mixed Media + Cinematic Interactions
+   ===================================================== */
+
+/* Base card with magazine texture */
+.editorial-card {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: var(--shadow-base);
+  overflow: hidden;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.editorial-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.01) 2px,
+      rgba(0, 0, 0, 0.01) 4px
+    );
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.editorial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Ripped edge effect */
+.editorial-card.ripped::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--color-bg-primary) 5%,
+    transparent 10%,
+    var(--color-bg-primary) 15%,
+    transparent 20%,
+    var(--color-bg-primary) 25%,
+    transparent 30%
+  );
+  background-size: 20px 100%;
+}
+
+/* Magazine header style */
+.magazine-header {
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+  border-bottom: 2px solid var(--color-accent-primary);
+  position: relative;
+}
+
+.magazine-header::after {
+  content: '✂';
+  position: absolute;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%) rotate(-45deg);
+  font-size: var(--font-size-xl);
+  opacity: 0.2;
+}
+
+.magazine-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+}
+
+.magazine-title::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40%;
+  height: 3px;
+  background: var(--color-accent-primary);
+  transform: skewX(-20deg);
+}
+
+.magazine-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-2);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* Editorial content area */
+.editorial-content {
+  padding: var(--space-6);
+  position: relative;
+}
+
+/* Scribble accent */
+.scribble-accent {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.scribble-accent.top-right {
+  top: var(--space-4);
+  right: var(--space-4);
+}
+
+.scribble-accent.bottom-left {
+  bottom: var(--space-4);
+  left: var(--space-4);
+}
+
+/* Type-written effect */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.typewriter-text {
+  overflow: hidden;
+  border-right: 2px solid var(--color-accent-primary);
+  white-space: nowrap;
+  animation: typewriter 2s steps(40) forwards,
+             blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Polaroid frame */
+.polaroid-frame {
+  background: white;
+  padding: var(--space-3);
+  padding-bottom: var(--space-10);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: rotate(-2deg);
+  transition: transform var(--transition-base);
+}
+
+.polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  color: #333;
+}
+
+/* Color chip overlay */
+.color-chip {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.color-chip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.rotating-chips {
+  display: flex;
+  gap: var(--space-4);
+  perspective: 1000px;
+}
+
+/* Fabric texture card */
+.fabric-texture {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+  transition: all var(--transition-base);
+}
+
+.fabric-texture:hover {
+  transform: scale(1.02);
+}
+
+/* Split screen layout */
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  min-height: 300px;
+}
+
+.split-left,
+.split-right {
+  position: relative;
+  padding: var(--space-5);
+}
+
+.split-left {
+  background: var(--color-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.split-right {
+  background: linear-gradient(135deg,
+    var(--color-bg-tertiary) 0%,
+    var(--color-bg-secondary) 100%
+  );
+}
+
+/* Hand-drawn elements */
+.drawn-circle {
+  border: 3px solid var(--color-accent-primary);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse-draw 3s ease-in-out infinite;
+}
+
+@keyframes pulse-draw {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.drawn-underline {
+  position: relative;
+}
+
+.drawn-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent-secondary);
+  transform: skewY(-1deg);
+  opacity: 0.7;
+}
+
+/* Marquee scrolling */
+.marquee-container {
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+  padding: var(--space-4) 0;
+  border-top: 2px dashed var(--color-border-base);
+  border-bottom: 2px dashed var(--color-border-base);
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-6);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.marquee-item::before {
+  content: '★';
+  color: var(--color-accent-primary);
+  font-size: var(--font-size-base);
+}
+
+/* Journal page flip */
+.journal-pages {
+  position: relative;
+  perspective: 1500px;
+  min-height: 300px;
+}
+
+.journal-page {
+  background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 100%);
+  border: 1px solid #E8DCC8;
+  padding: var(--space-6);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.journal-page::before {
+  content: '';
+  position: absolute;
+  left: var(--space-8);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 24px,
+    #E8DCC8 24px,
+    #E8DCC8 26px
+  );
+}
+
+.journal-entry {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-sm);
+  line-height: 1.8;
+  color: #333;
+  margin-left: var(--space-12);
+}
+
+/* Gold ink accents */
+.gold-accent {
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-semibold);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .split-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .magazine-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .rotating-chips {
+    justify-content: center;
+  }
+}

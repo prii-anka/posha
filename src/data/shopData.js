@@ -1,0 +1,135 @@
+// NEW FEATURE UPDATE – Phase 9 Overhaul
+// Shop & Compare dummy product data
+
+export const SHOP_PRODUCTS = [
+  {
+    id: 'prod1',
+    brand: 'Everlane',
+    name: 'The Day Crossbody',
+    category: 'Accessories',
+    fabric: 'Italian Leather',
+    color: 'Cognac',
+    price: 118,
+    sustainability: 'Ethical Factory, Carbon Neutral',
+    imageUrl: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=800&fit=crop&q=80',
+    description: 'Minimalist leather crossbody made in ethical Italian factories.',
+    tags: ['Leather', 'Neutral', 'Minimal']
+  },
+  {
+    id: 'prod2',
+    brand: 'Reformation',
+    name: 'Petites Linen Dress',
+    category: 'Dresses',
+    fabric: 'Linen',
+    color: 'Olive',
+    price: 178,
+    sustainability: 'Deadstock Fabric, Carbon Neutral',
+    imageUrl: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop&q=80',
+    description: 'Breezy midi dress in sustainable deadstock linen.',
+    tags: ['Linen', 'Green', 'Summer']
+  },
+  {
+    id: 'prod3',
+    brand: 'Zara',
+    name: 'Oversized Blazer',
+    category: 'Outerwear',
+    fabric: 'Wool Blend',
+    color: 'Navy',
+    price: 89,
+    sustainability: 'Recycled Wool Content',
+    imageUrl: 'https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=600&h=800&fit=crop&q=80',
+    description: 'Structured oversized blazer with recycled wool.',
+    tags: ['Wool', 'Blue', 'Workwear']
+  },
+  {
+    id: 'prod4',
+    brand: 'Patagonia',
+    name: 'Better Sweater Fleece',
+    category: 'Outerwear',
+    fabric: 'Recycled Polyester',
+    color: 'Slate',
+    price: 139,
+    sustainability: 'Fair Trade, Recycled Materials',
+    imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop&q=80',
+    description: 'Classic fleece jacket made from recycled plastic bottles.',
+    tags: ['Recycled', 'Grey', 'Athletic']
+  },
+  {
+    id: 'prod5',
+    brand: 'Madewell',
+    name: 'The Perfect Vintage Jean',
+    category: 'Denim',
+    fabric: 'Denim',
+    color: 'Denim',
+    price: 128,
+    sustainability: 'Water-Saving Wash',
+    imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=800&fit=crop&q=80',
+    description: 'High-rise vintage jean with water-efficient processing.',
+    tags: ['Denim', 'Blue', 'Classic']
+  },
+  {
+    id: 'prod6',
+    brand: 'Eileen Fisher',
+    name: 'Organic Cotton Tee',
+    category: 'Tops',
+    fabric: 'Cotton',
+    color: 'Cream',
+    price: 68,
+    sustainability: 'Organic Cotton, Fair Trade',
+    imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=800&fit=crop&q=80',
+    description: 'Boxy organic cotton tee in timeless cream.',
+    tags: ['Cotton', 'Neutral', 'Minimal']
+  },
+  {
+    id: 'prod7',
+    brand: 'Cuyana',
+    name: 'Silk Blouse',
+    category: 'Tops',
+    fabric: 'Silk',
+    color: 'Blush',
+    price: 165,
+    sustainability: 'Fewer, Better Philosophy',
+    imageUrl: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&h=800&fit=crop&q=80',
+    description: 'Timeless silk blouse designed to last for years.',
+    tags: ['Silk', 'Pink', 'Elegant']
+  },
+  {
+    id: 'prod8',
+    brand: 'Levi\'s',
+    name: 'Wellthread Chinos',
+    category: 'Pants',
+    fabric: 'Hemp Blend',
+    color: 'Terracotta',
+    price: 98,
+    sustainability: 'Hemp Blend, Water<Smart',
+    imageUrl: 'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&h=800&fit=crop&q=80',
+    description: 'Sustainable chinos made with hemp and water-saving tech.',
+    tags: ['Hemp', 'Orange', 'Casual']
+  },
+  {
+    id: 'prod9',
+    brand: 'Tentree',
+    name: 'TreeFleece Hoodie',
+    category: 'Outerwear',
+    fabric: 'Organic Cotton',
+    color: 'Sage',
+    price: 78,
+    sustainability: '10 Trees Planted Per Item',
+    imageUrl: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop&q=80',
+    description: 'Cozy hoodie that plants 10 trees with every purchase.',
+    tags: ['Cotton', 'Green', 'Athletic']
+  },
+  {
+    id: 'prod10',
+    brand: 'Allbirds',
+    name: 'Tree Runners',
+    category: 'Shoes',
+    fabric: 'Eucalyptus Fiber',
+    color: 'Ink',
+    price: 98,
+    sustainability: 'Carbon Neutral, Renewable Materials',
+    imageUrl: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&h=800&fit=crop&q=80',
+    description: 'Ultra-comfortable sneakers made from eucalyptus trees.',
+    tags: ['Sustainable', 'Black', 'Athletic']
+  }
+]

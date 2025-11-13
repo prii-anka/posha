@@ -1,0 +1,241 @@
+/* =====================================================
+   POSHA — Fashion Intelligence Platform
+   Design Tokens v1.0
+   ===================================================== */
+
+/* ===== FONT IMPORTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Gotu&display=swap');
+
+/* ===== ROOT TOKENS ===== */
+:root {
+  /* Typography Scale */
+  --font-logo: 'Gotu', sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+
+  --line-height-tight: 1.2;
+  --line-height-base: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-base: 0.5rem;  /* 8px */
+  --radius-md: 0.75rem;   /* 12px */
+  --radius-lg: 1rem;      /* 16px */
+  --radius-xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;
+
+  /* Shadows — Soft Editorial Style */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --transition-fast: 200ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* Pinterest-style Vibrant Colors */
+  --color-pinterest-red: #E60023;
+  --color-vibrant-pink: #FF1694;
+  --color-vibrant-purple: #8B5CF6;
+  --color-vibrant-blue: #3B82F6;
+  --color-vibrant-green: #10B981;
+  --color-vibrant-yellow: #F59E0B;
+  --color-vibrant-orange: #FF6B35;
+  --color-vibrant-teal: #14B8A6;
+
+  /* Fun Gradient Backgrounds */
+  --gradient-sunset: linear-gradient(135deg, #FF6B35 0%, #F59E0B 50%, #FF1694 100%);
+  --gradient-ocean: linear-gradient(135deg, #3B82F6 0%, #14B8A6 100%);
+  --gradient-purple-pink: linear-gradient(135deg, #8B5CF6 0%, #FF1694 100%);
+  --gradient-fresh: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);
+}
+
+/* ===== THEME: SOFT MUSE (RETRO IT GIRL PALETTE) ===== */
+[data-theme="soft-muse"] {
+  --color-bg-primary: #FFF5F7;      /* Soft cream pink */
+  --color-bg-secondary: #FFE0EB;    /* Pastel blush */
+  --color-bg-tertiary: #FFFAF0;     /* Warm ivory */
+
+  --color-accent-primary: #E94B7A;  /* Retro coral pink */
+  --color-accent-primary-rgb: 233, 75, 122;
+  --color-accent-secondary: #FF6B9D; /* Bubblegum pink */
+  --color-accent-tertiary: #FFB4D1;  /* Soft rose */
+
+  --color-text-primary: #2D1B2E;    /* Deep plum */
+  --color-text-secondary: #6B4E71;  /* Muted purple */
+  --color-text-tertiary: #A67C96;   /* Dusty mauve */
+  --color-text-muted: #D4A5C0;      /* Soft lavender */
+
+  --color-border-light: #FFD1E3;
+  --color-border-base: #FFB4D1;
+  --color-border-dark: #FF8CAB;
+}
+
+/* ===== THEME: NEUTRAL BALANCE ===== */
+[data-theme="neutral-balance"] {
+  --color-bg-primary: #FAF7F2;      /* Cream */
+  --color-bg-secondary: #F2EFE9;
+  --color-bg-tertiary: #FFF;
+
+  --color-accent-primary: #D4AF67;  /* Gold */
+  --color-accent-secondary: #707D88; /* Slate */
+  --color-accent-tertiary: #E6D5A8;
+
+  --color-text-primary: #2C2C2C;    /* Ink */
+  --color-text-secondary: #4A4A4A;
+  --color-text-tertiary: #6E7C87;
+  --color-text-muted: #A5ADB5;
+
+  --color-border-light: #E3DED5;
+  --color-border-base: #C8C3BA;
+  --color-border-dark: #9A9B9E;
+}
+
+/* ===== THEME: BOLD EDGE ===== */
+[data-theme="bold-edge"] {
+  --color-bg-primary: #FFF5F7;      /* Soft White with Rose tint */
+  --color-bg-secondary: #F0E8EC;
+  --color-bg-tertiary: #FFF;
+
+  --color-accent-primary: #C9818F;  /* Rose */
+  --color-accent-secondary: #B8A7C9; /* Lavender */
+  --color-accent-tertiary: #E0B3BF;
+
+  --color-text-primary: #1A1A1A;    /* Ink - deeper */
+  --color-text-secondary: #3D3D3D;
+  --color-text-tertiary: #6B5D66;
+  --color-text-muted: #A39199;
+
+  --color-border-light: #E8D9DF;
+  --color-border-base: #D0BDC5;
+  --color-border-dark: #9B7C88;
+}
+
+/* ===== GLOBAL STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+/* Typography Utilities */
+.logo {
+  font-family: var(--font-logo);
+  font-weight: var(--font-weight-bold);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: var(--font-size-5xl); }
+h2 { font-size: var(--font-size-4xl); }
+h3 { font-size: var(--font-size-3xl); }
+h4 { font-size: var(--font-size-2xl); }
+h5 { font-size: var(--font-size-xl); }
+h6 { font-size: var(--font-size-lg); }
+
+p {
+  font-family: var(--font-body);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Smooth Transitions */
+button, a, input, select, textarea {
+  transition: opacity var(--transition-fast),
+              transform var(--transition-fast),
+              background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+button:hover, a:hover {
+  opacity: 0.85;
+}
+
+button:active, a:active {
+  opacity: 0.7;
+}
+
+/* ===== DARK MODE THEME ===== */
+[data-theme="dark"] {
+  --color-bg-primary: #0F0F0F;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-tertiary: #242424;
+
+  --color-accent-primary: var(--color-accent-custom, #FF1694);
+  --color-accent-primary-rgb: 255, 22, 148;
+  --color-accent-secondary: #FF4DB8;
+  --color-accent-tertiary: #FF80CC;
+
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #B8B8B8;
+  --color-text-tertiary: #808080;
+  --color-text-muted: #5A5A5A;
+
+  --color-border-light: #2A2A2A;
+  --color-border-base: #404040;
+  --color-border-strong: #5A5A5A;
+
+  --color-success: #4ADE80;
+  --color-warning: #FCD34D;
+  --color-error: #F87171;
+  --color-info: #60A5FA;
+
+  /* Adjust shadows for dark mode */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.5);
+}
