@@ -71,6 +71,9 @@ function Onboarding({ onComplete, isSkipFlow = false, userData = null }) {
     localStorage.setItem('poshaUserGoals', JSON.stringify(userGoals))
     localStorage.setItem('poshaPainPoints', JSON.stringify(painPoints))
 
+    // CRITICAL: Mark onboarding as complete
+    localStorage.setItem('poshaOnboardingComplete', 'true')
+
     onComplete()
   }
 
