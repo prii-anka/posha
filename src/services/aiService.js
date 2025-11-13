@@ -72,9 +72,27 @@ Posha:`
       apiKey: import.meta.env.VITE_GEMINI_API_KEY ? 'Present' : 'Missing'
     })
 
+    // Check for specific error types
+    let errorMessage = `I'm having a little wardrobe malfunction right now! 😅 But I'm here to help. Could you try asking me again? I specialize in:\n\n• Outfit recommendations from your closet\n• Shopping advice\n• Mix and match ideas\n• Weather-appropriate styling\n• Occasion-based outfit planning\n\nWhat would you like help with?`
+
+    // Rate limit or quota exceeded errors
+    if (error.message?.includes('429') ||
+        error.message?.includes('quota') ||
+        error.message?.includes('rate limit') ||
+        error.message?.includes('RESOURCE_EXHAUSTED')) {
+      errorMessage = `Oops! I'm getting too many requests right now. 😅 Please wait a moment and try again.\n\nThis happens when:\n• Too many people are chatting with me at once\n• You've sent several messages very quickly\n\nJust give me a minute to catch my breath, and I'll be ready to help with your fashion questions!`
+    }
+
+    // API key issues
+    if (error.message?.includes('API key') ||
+        error.message?.includes('401') ||
+        error.message?.includes('403')) {
+      errorMessage = `I'm having trouble connecting to my fashion brain right now! 🤔 Please contact support if this persists.\n\nI specialize in:\n• Outfit recommendations\n• Shopping advice\n• Style tips\n\nTry refreshing the page?`
+    }
+
     // Return a fallback response
     return {
-      text: `I'm having a little wardrobe malfunction right now! 😅 But I'm here to help. Could you try asking me again? I specialize in:\n\n• Outfit recommendations from your closet\n• Shopping advice\n• Mix and match ideas\n• Weather-appropriate styling\n• Occasion-based outfit planning\n\nWhat would you like help with?`,
+      text: errorMessage,
       items: []
     }
   }
@@ -89,6 +107,8 @@ function buildSystemContext(closetItems, weather, location, profile) {
   const fabrics = [...new Set(closetItems.map(item => item.fabric))].filter(Boolean)
 
   return `You are Posha, an AI fashion assistant. Your name comes from the Sanskrit word "poshakh" (पोशाख), meaning "attire" or "dress."
+
+IMPORTANT: Stay in character as Posha at all times. Never mention AI models, Google, Gemini, or technical details about how you work. If asked about your technology, simply say you're Posha, a fashion assistant here to help with style advice.
 
 Your personality:
 - Friendly, enthusiastic, and supportive
