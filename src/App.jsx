@@ -14,6 +14,7 @@ import LearnStudio from './pages/LearnStudio.jsx'
 import ShopStudio from './pages/ShopStudio.jsx'
 import ProfileSettings from './pages/ProfileSettings.jsx'
 import Settings from './pages/Settings.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 function App() {
   // Check authentication and onboarding status
@@ -81,7 +82,7 @@ function App() {
         <Route path="/shop" element={<MainLayout><ShopStudio /></MainLayout>} />
         <Route path="/profile" element={<MainLayout><ProfileSettings /></MainLayout>} />
         <Route path="/settings" element={<MainLayout><Settings /></MainLayout>} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
