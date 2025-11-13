@@ -17,64 +17,64 @@ function Landing() {
   const getStyleBasedImages = () => {
     const imagesByVibe = {
       romantic: {
-        hero: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop'
+        hero: '/images/landing/romantic-hero.jpg',
+        solution1: '/images/landing/romantic-solution1.jpg',
+        solution2: '/images/landing/romantic-solution2.jpg',
+        solution3: '/images/landing/romantic-solution3.jpg'
       },
       edgy: {
-        hero: 'https://images.unsplash.com/photo-1558769132-cb1aea3c1038?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=400&fit=crop'
+        hero: '/images/landing/edgy-hero.jpg',
+        solution1: '/images/landing/edgy-solution1.jpg',
+        solution2: '/images/landing/edgy-solution2.jpg',
+        solution3: '/images/landing/edgy-solution3.jpg'
       },
       minimalist: {
-        hero: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=400&fit=crop'
+        hero: '/images/landing/minimalist-hero.jpg',
+        solution1: '/images/landing/minimalist-solution1.jpg',
+        solution2: '/images/landing/minimalist-solution2.jpg',
+        solution3: '/images/landing/romantic-solution2.jpg'
       },
       bohemian: {
-        hero: 'https://images.unsplash.com/photo-1583846792359-0e9c4c62873a?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1558769132-92e717d613cd?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1548624313-58e54ef7d977?w=600&h=400&fit=crop'
+        hero: '/images/landing/bohemian-hero.jpg',
+        solution1: '/images/landing/bohemian-solution1.jpg',
+        solution2: '/images/landing/bohemian-solution2.jpg',
+        solution3: '/images/landing/bohemian-solution3.jpg'
       },
       classic: {
-        hero: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=400&fit=crop'
+        hero: '/images/landing/romantic-solution2.jpg',
+        solution1: '/images/landing/classic-solution1.jpg',
+        solution2: '/images/landing/edgy-solution1.jpg',
+        solution3: '/images/landing/romantic-hero.jpg'
       },
       sporty: {
-        hero: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1537698334787-1f71f26c0d99?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600&h=400&fit=crop'
+        hero: '/images/landing/sporty-hero.jpg',
+        solution1: '/images/landing/sporty-solution1.jpg',
+        solution2: '/images/landing/sporty-solution2.jpg',
+        solution3: '/images/landing/sporty-solution3.jpg'
       },
       glamorous: {
-        hero: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&h=400&fit=crop'
+        hero: '/images/landing/romantic-hero.jpg',
+        solution1: '/images/landing/minimalist-hero.jpg',
+        solution2: '/images/landing/romantic-solution3.jpg',
+        solution3: '/images/landing/edgy-solution1.jpg'
       },
       casual: {
-        hero: 'https://images.unsplash.com/photo-1558769132-cb1aea3c1038?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&h=400&fit=crop'
+        hero: '/images/landing/edgy-hero.jpg',
+        solution1: '/images/landing/minimalist-solution2.jpg',
+        solution2: '/images/landing/minimalist-solution1.jpg',
+        solution3: '/images/landing/casual-solution3.jpg'
       },
       preppy: {
-        hero: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=400&fit=crop'
+        hero: '/images/landing/minimalist-solution1.jpg',
+        solution1: '/images/landing/edgy-solution1.jpg',
+        solution2: '/images/landing/preppy-solution2.jpg',
+        solution3: '/images/landing/romantic-hero.jpg'
       },
       vintage: {
-        hero: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=800&fit=crop&q=80',
-        solution1: 'https://images.unsplash.com/photo-1509319117992-615e5ccc5d2e?w=600&h=400&fit=crop',
-        solution2: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&h=400&fit=crop',
-        solution3: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop'
+        hero: '/images/landing/romantic-hero.jpg',
+        solution1: '/images/landing/vintage-solution1.jpg',
+        solution2: '/images/landing/classic-solution1.jpg',
+        solution3: '/images/landing/romantic-solution3.jpg'
       }
     }
 
