@@ -70,6 +70,10 @@ function Auth({ onComplete, onSkip }) {
 
     try {
       const provider = new GoogleAuthProvider()
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      })
+
       const result = await signInWithPopup(auth, provider)
       const user = result.user
 
@@ -90,10 +94,19 @@ function Auth({ onComplete, onSkip }) {
       onComplete(userData)
     } catch (err) {
       console.error('Google auth error:', err)
+      console.error('Error code:', err.code)
+      console.error('Error message:', err.message)
+
       if (err.code === 'auth/popup-closed-by-user') {
         setError('Sign-in cancelled. Please try again.')
+      } else if (err.code === 'auth/popup-blocked') {
+        setError('Popup blocked. Please allow popups for this site.')
+      } else if (err.code === 'auth/unauthorized-domain') {
+        setError('This domain is not authorized. Please add it in Firebase Console.')
+      } else if (err.code === 'auth/operation-not-allowed') {
+        setError('Google sign-in is not enabled in Firebase.')
       } else {
-        setError('Google sign-in failed. Please try again.')
+        setError(`Google sign-in failed: ${err.message}`)
       }
     } finally {
       setLoading(false)
