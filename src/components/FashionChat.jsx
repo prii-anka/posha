@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { usePoshaData } from '../context/PoshaDataContext'
 import { useWeather } from '../hooks/useWeather'
+import { getFashionAdvice } from '../services/aiService'
 import './FashionChat.css'
 
 const EXAMPLE_PROMPTS = [
@@ -58,78 +59,10 @@ function FashionChat() {
     scrollToBottom()
   }, [messages])
 
-  const generateAIResponse = (userMessage) => {
-    const lowerMessage = userMessage.toLowerCase()
-
-    // Context about user's closet
-    const closetItems = closet.filter(item => typeof item === 'object' && item.image)
-    const categories = [...new Set(closetItems.map(item => item.category))]
-
-    // Analyze user intent
-    if (lowerMessage.includes('work') || lowerMessage.includes('office')) {
-      const workItems = closetItems.filter(item =>
-        ['Tops', 'Bottoms', 'Outerwear', 'Shoes'].includes(item.category)
-      )
-
-      if (workItems.length >= 3) {
-        const suggestions = workItems.slice(0, 3)
-        return {
-          text: `Great! For work tomorrow, I'd suggest mixing and matching from your closet:\n\n${suggestions.map((item, i) => `${i + 1}. ${item.name || item.category} in ${item.color || 'your favorite color'}`).join('\n')}\n\nThis combination is professional and weather-appropriate for ${location?.name || 'your location'} (${weather?.temperature || '--'}°C).`,
-          items: suggestions
-        }
-      } else {
-        return {
-          text: `I see you have ${closetItems.length} items in your closet. For work attire, I'd recommend adding some versatile pieces like:\n\n• A classic blazer\n• Tailored trousers or a pencil skirt\n• Button-down shirts in neutral colors\n• Comfortable yet professional shoes\n\nWould you like specific recommendations based on your current style?`,
-          items: []
-        }
-      }
-    }
-
-    if (lowerMessage.includes('buy') || lowerMessage.includes('shopping')) {
-      return {
-        text: `I'd be happy to help you find the perfect outfit! Based on your closet, you have items in these categories: ${categories.join(', ')}.\n\nTo give you the best recommendations:\n• What's your budget?\n• What's the occasion?\n• Any specific colors or styles you prefer?\n\nI can suggest items that complement what you already own!`,
-        items: []
-      }
-    }
-
-    if (lowerMessage.includes('mix') || lowerMessage.includes('match') || lowerMessage.includes('combine')) {
-      const randomItems = closetItems.sort(() => 0.5 - Math.random()).slice(0, 3)
-      return {
-        text: `Here's a great mix-and-match combination from your closet:\n\n${randomItems.map((item, i) => `${i + 1}. ${item.name || item.category} (${item.color || 'Classic'})`).join('\n')}\n\nThese pieces work well together and are perfect for the current weather!`,
-        items: randomItems
-      }
-    }
-
-    if (lowerMessage.includes('casual') || lowerMessage.includes('date')) {
-      const casualItems = closetItems.filter(item =>
-        ['Tops', 'Bottoms', 'Dresses', 'Shoes'].includes(item.category)
-      )
-
-      if (casualItems.length >= 2) {
-        const suggestions = casualItems.slice(0, 3)
-        return {
-          text: `For a casual date, you want to look great while feeling comfortable! Here's what I suggest:\n\n${suggestions.map((item, i) => `${i + 1}. ${item.name || item.category}`).join('\n')}\n\nThis outfit is relaxed yet stylish. Add some accessories to complete the look!`,
-          items: suggestions
-        }
-      }
-    }
-
-    if (lowerMessage.includes('home') || lowerMessage.includes('comfortable')) {
-      const comfyItems = closetItems.filter(item =>
-        item.fabric && ['Cotton', 'Fleece'].includes(item.fabric)
-      )
-
-      return {
-        text: `For working from home, comfort is key! ${comfyItems.length > 0 ? `Your ${comfyItems[0].name || comfyItems[0].category} would be perfect.` : 'I recommend soft cotton or fleece pieces.'}\n\nStay cozy while looking presentable for video calls!`,
-        items: comfyItems.slice(0, 2)
-      }
-    }
-
-    // Default response
-    return {
-      text: `I'm Posha, your AI fashion assistant! I can help you with:\n\n• Choosing outfits from your closet\n• Shopping recommendations\n• Mix and match suggestions\n• Weather-appropriate styling\n• Occasion-based outfit planning\n\nYou currently have ${closetItems.length} items in your closet. What would you like help with today?`,
-      items: []
-    }
+  // Load user profile from localStorage
+  const getUserProfile = () => {
+    const profile = localStorage.getItem('poshaProfile')
+    return profile ? JSON.parse(profile) : {}
   }
 
   const handleSend = async () => {
@@ -142,24 +75,52 @@ function FashionChat() {
       timestamp: new Date()
     }
 
+    const currentInput = inputValue
     setMessages(prev => [...prev, userMessage])
     setInputValue('')
     setIsTyping(true)
 
-    // Simulate AI thinking time
-    setTimeout(() => {
-      const aiResponse = generateAIResponse(inputValue)
+    try {
+      // Prepare context for AI
+      const closetItems = closet.filter(item => typeof item === 'object' && item.image)
+      const profile = getUserProfile()
+
+      const context = {
+        closetItems,
+        weather,
+        location,
+        profile,
+        chatHistory: messages
+      }
+
+      // Get AI response
+      const aiResponse = await getFashionAdvice(currentInput, context)
+
       const aiMessage = {
         id: Date.now() + 1,
         type: 'ai',
         text: aiResponse.text,
-        items: aiResponse.items,
+        items: aiResponse.items || [],
         timestamp: new Date()
       }
 
       setMessages(prev => [...prev, aiMessage])
+    } catch (error) {
+      console.error('Error getting AI response:', error)
+
+      // Fallback message on error
+      const errorMessage = {
+        id: Date.now() + 1,
+        type: 'ai',
+        text: `Oops! I'm having a little wardrobe malfunction 😅 Could you try asking me again? I'm here to help with outfit advice, styling tips, and fashion recommendations!`,
+        items: [],
+        timestamp: new Date()
+      }
+
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
       setIsTyping(false)
-    }, 1000)
+    }
   }
 
   const handlePromptClick = (prompt) => {
