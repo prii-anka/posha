@@ -67,10 +67,15 @@
   transition: all var(--transition-fast);
 }
 
-.auth-social-btn:hover {
+.auth-social-btn:hover:not(:disabled) {
   border-color: var(--color-accent-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.auth-social-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .auth-social-btn.google:hover {
@@ -111,6 +116,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+
+.auth-error {
+  padding: var(--space-3) var(--space-4);
+  background: #FEE;
+  border: 1px solid #FCC;
+  border-radius: var(--radius-base);
+  color: #C33;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-2);
 }
 
 .form-group {
@@ -158,10 +173,15 @@
   margin-top: var(--space-2);
 }
 
-.auth-submit-btn:hover {
+.auth-submit-btn:hover:not(:disabled) {
   background: var(--color-accent-secondary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Toggle */
