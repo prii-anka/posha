@@ -316,7 +316,7 @@ function Landing() {
       <div className="final-cta">
         <h2 className="cta-headline">Ready to use what you already have?</h2>
         <p className="cta-subtext">
-          Join hundreds who've reduced decision time by 80% and shopping by 30%.
+          Join hundreds who've reduced decision time by 80% and shopping by 20%.
         </p>
         <button className="cta-primary" onClick={handleEnter}>
           Start Using पोsha Now
