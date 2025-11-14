@@ -55,8 +55,18 @@ function Onboarding({ onComplete, isSkipFlow = false, userData = null }) {
     setTheme(themeToSet)
 
     // Save all profile and preference data
+    // Align with PoshaProfileContext structure
     const profileData = {
       name: name.trim(),
+      pronouns: '', // User can update this later in settings
+      styleArchetype: styleVibes.join(', '), // Convert array to string
+      avatar: null,
+      createdAt: new Date().toISOString(),
+      styleGoals: userGoals,
+      inspirationImages: [],
+      shoppingPreference: '', // User can update this later
+      savedLearnCards: [],
+      // Keep onboarding-specific fields for backward compatibility
       gender,
       styleVibes,
       wantsMakeup,
