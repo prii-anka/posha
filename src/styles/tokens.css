@@ -164,6 +164,36 @@ body {
   background-color: var(--color-bg-primary);
   transition: background-color var(--transition-fast),
               color var(--transition-fast);
+  position: relative;
+}
+
+/* Vertical stripes background for non-dark themes */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.4;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 80px,
+    var(--color-accent-primary) 80px,
+    var(--color-accent-primary) 82px,
+    transparent 82px,
+    transparent 160px,
+    var(--color-accent-secondary) 160px,
+    var(--color-accent-secondary) 162px
+  );
+}
+
+/* Hide stripes in dark mode */
+[data-theme="dark"] body::before {
+  display: none;
 }
 
 /* Typography Utilities */
