@@ -34,12 +34,28 @@ function FashionChat() {
   const { closet } = usePoshaData()
   const { weather, location } = useWeather()
 
-  // Load user name from profile
+  // Load chat history and user name from localStorage
   useEffect(() => {
     const profile = localStorage.getItem('poshaProfile')
     if (profile) {
       const profileData = JSON.parse(profile)
       setUserName(profileData.name || '')
+    }
+
+    // Load saved chat history
+    const savedChat = localStorage.getItem('poshaChatHistory')
+    if (savedChat) {
+      try {
+        const parsedChat = JSON.parse(savedChat)
+        // Convert timestamp strings back to Date objects
+        const messagesWithDates = parsedChat.map(msg => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp)
+        }))
+        setMessages(messagesWithDates)
+      } catch (error) {
+        console.error('Error loading chat history:', error)
+      }
     }
   }, [])
 
@@ -57,6 +73,13 @@ function FashionChat() {
 
   useEffect(() => {
     scrollToBottom()
+  }, [messages])
+
+  // Save chat history to localStorage whenever messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem('poshaChatHistory', JSON.stringify(messages))
+    }
   }, [messages])
 
   // Load user profile from localStorage
@@ -134,6 +157,13 @@ function FashionChat() {
     }
   }
 
+  const handleClearChat = () => {
+    if (window.confirm('Are you sure you want to clear your chat history? This cannot be undone.')) {
+      setMessages([])
+      localStorage.removeItem('poshaChatHistory')
+    }
+  }
+
   return (
     <div className="fashion-chat">
       {messages.length === 0 ? (
@@ -167,6 +197,14 @@ function FashionChat() {
         </div>
       ) : (
         <div className="chat-messages" role="log" aria-live="polite" aria-label="Chat conversation">
+          <button
+            className="clear-chat-button"
+            onClick={handleClearChat}
+            aria-label="Clear chat history"
+            title="Clear chat history"
+          >
+            Clear Chat
+          </button>
           {messages.map((message) => (
             <div key={message.id} className={`message ${message.type}`}>
               <div className="message-avatar" aria-hidden="true">
