@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Gemini API</title>
+</head>
+<body>
+    <h1>Testing Gemini API</h1>
+    <button id="testBtn">Test API</button>
+    <pre id="output"></pre>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from 'https://esm.run/@google/generative-ai';
+
+        const API_KEY = 'AIzaSyCtImmfWcKI8ywyaXjipmAnowqpSg4SnzY';
+
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            const output = document.getElementById('output');
+            output.textContent = 'Testing...';
+
+            try {
+                const genAI = new GoogleGenerativeAI(API_KEY);
+                const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+                const result = await model.generateContent('Say hello in one sentence');
+                const response = await result.response;
+                const text = response.text();
+
+                output.textContent = 'SUCCESS!\n\n' + text;
+            } catch (error) {
+                output.textContent = 'ERROR:\n\n' + error.message + '\n\n' + error.stack;
+            }
+        });
+    </script>
+</body>
+</html>

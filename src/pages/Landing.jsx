@@ -23,7 +23,7 @@ function Landing() {
         solution3: '/images/landing/romantic-solution3.jpg'
       },
       edgy: {
-        hero: '/images/landing/edgy-hero.jpg',
+        hero: '/images/landing/edgy-solution1.jpg',
         solution1: '/images/landing/edgy-solution1.jpg',
         solution2: '/images/landing/edgy-solution2.jpg',
         solution3: '/images/landing/edgy-solution3.jpg'
@@ -35,10 +35,10 @@ function Landing() {
         solution3: '/images/landing/romantic-solution2.jpg'
       },
       bohemian: {
-        hero: '/images/landing/bohemian-hero.jpg',
+        hero: '/images/landing/bohemian-solution1.jpg',
         solution1: '/images/landing/bohemian-solution1.jpg',
         solution2: '/images/landing/bohemian-solution2.jpg',
-        solution3: '/images/landing/bohemian-solution3.jpg'
+        solution3: '/images/landing/romantic-solution3.jpg'
       },
       classic: {
         hero: '/images/landing/romantic-solution2.jpg',
@@ -48,7 +48,7 @@ function Landing() {
       },
       sporty: {
         hero: '/images/landing/sporty-hero.jpg',
-        solution1: '/images/landing/sporty-solution1.jpg',
+        solution1: '/images/landing/sporty-solution2.jpg',
         solution2: '/images/landing/sporty-solution2.jpg',
         solution3: '/images/landing/sporty-solution3.jpg'
       },
@@ -59,7 +59,7 @@ function Landing() {
         solution3: '/images/landing/edgy-solution1.jpg'
       },
       casual: {
-        hero: '/images/landing/edgy-hero.jpg',
+        hero: '/images/landing/casual-solution3.jpg',
         solution1: '/images/landing/minimalist-solution2.jpg',
         solution2: '/images/landing/minimalist-solution1.jpg',
         solution3: '/images/landing/casual-solution3.jpg'
@@ -72,7 +72,7 @@ function Landing() {
       },
       vintage: {
         hero: '/images/landing/romantic-hero.jpg',
-        solution1: '/images/landing/vintage-solution1.jpg',
+        solution1: '/images/landing/classic-solution1.jpg',
         solution2: '/images/landing/classic-solution1.jpg',
         solution3: '/images/landing/romantic-solution3.jpg'
       }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Environment Variables</title>
+</head>
+<body>
+    <h1>Environment Variable Debug</h1>
+    <button id="checkBtn">Check VITE_GEMINI_API_KEY</button>
+    <pre id="output"></pre>
+
+    <script type="module">
+        document.getElementById('checkBtn').addEventListener('click', () => {
+            const output = document.getElementById('output');
+            const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+            output.textContent = 'Environment Variable Status:\n\n';
+            output.textContent += `VITE_GEMINI_API_KEY: ${apiKey ? 'Present (' + apiKey.substring(0, 10) + '...)' : 'MISSING!'}\n`;
+            output.textContent += `\nAll env vars:\n${JSON.stringify(import.meta.env, null, 2)}`;
+        });
+    </script>
+</body>
+</html>
