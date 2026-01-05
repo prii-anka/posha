@@ -32,7 +32,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Victoria's Secret style diagonal stripes - Static Background */
+/* Subtle background - Much lighter for text readability */
 body::before {
   content: '';
   position: fixed;
@@ -42,14 +42,14 @@ body::before {
   height: 100%;
   background: repeating-linear-gradient(
     90deg,
-    #FFB3D9,
-    #FFB3D9 100px,
-    #FFD6EB 100px,
-    #FFD6EB 200px
+    rgba(255, 179, 217, 0.15),
+    rgba(255, 179, 217, 0.15) 100px,
+    rgba(255, 214, 235, 0.15) 100px,
+    rgba(255, 214, 235, 0.15) 200px
   );
   pointer-events: none;
   z-index: 0;
-  /* Animation removed for comfort */
+  /* Much lighter opacity for better text visibility */
 }
 
 h1 {
