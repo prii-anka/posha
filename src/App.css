@@ -1,7 +1,46 @@
 /* =====================================================
    POSHA — App Styles
-   Soft Editorial Aesthetic
+   Soft Editorial Aesthetic + Dynamic Animations
    ===================================================== */
+
+/* ===== DYNAMIC BACKGROUND ANIMATION ===== */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatingSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
 
 .app {
   min-height: 100vh;
@@ -10,6 +49,18 @@
   padding: var(--space-6);
   position: relative;
   z-index: 1;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== HEADER ===== */
@@ -18,6 +69,24 @@
   padding: var(--space-12) 0;
   border-bottom: 1px solid var(--color-border-light);
   margin-bottom: var(--space-12);
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 3s infinite;
 }
 
 .header .logo {
@@ -25,6 +94,23 @@
   margin-bottom: var(--space-4);
   color: var(--color-text-primary);
   letter-spacing: 0.02em;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-primary),
+    var(--color-accent-secondary),
+    var(--color-accent-tertiary)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
+  transition: transform 0.3s ease;
+}
+
+.header .logo:hover {
+  transform: scale(1.05);
+  animation-play-state: paused;
 }
 
 .header .tagline {
@@ -32,6 +118,7 @@
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-regular);
   letter-spacing: 0.01em;
+  animation: fadeIn 0.8s ease-out 0.2s both;
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -70,18 +157,71 @@
   text-align: left;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.theme-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.theme-card:hover::before {
+  transform: translateX(100%);
 }
 
 .theme-card:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: var(--shadow-base);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .theme-card.active {
   border-color: var(--color-accent-primary);
   background: var(--color-bg-secondary);
   box-shadow: var(--shadow-md);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.theme-card.active::after {
+  content: '✓';
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 32px;
+  height: 32px;
+  background: var(--color-accent-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 .theme-card h3 {
@@ -112,6 +252,39 @@
   width: 100%;
   box-shadow: var(--shadow-base);
   transition: all var(--transition-fast);
+  animation: fadeIn 0.6s ease-out, floatingSlow 6s ease-in-out infinite;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--color-accent-primary),
+    var(--color-accent-secondary),
+    var(--color-accent-tertiary),
+    var(--color-accent-primary)
+  );
+  background-size: 300% 300%;
+  border-radius: var(--radius-lg);
+  z-index: -1;
+  opacity: 0;
+  animation: gradientShift 8s ease infinite;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 0.6;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .card h3 {
@@ -138,13 +311,51 @@
   border-radius: var(--radius-base);
   border: 1px solid var(--color-border-base);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast);
+  transition: all var(--transition-fast);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.swatch::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
 }
 
 .swatch:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-base);
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: var(--shadow-lg);
+}
+
+.swatch:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.swatch:active {
+  transform: scale(1.05) rotate(0deg);
+  transition: transform 0.1s ease;
+}
+
+/* Staggered animation for swatches */
+.swatch:nth-child(1) {
+  animation: fadeIn 0.4s ease-out 0.1s both;
+}
+
+.swatch:nth-child(2) {
+  animation: fadeIn 0.4s ease-out 0.2s both;
+}
+
+.swatch:nth-child(3) {
+  animation: fadeIn 0.4s ease-out 0.3s both;
 }
 
 .swatch.primary {
