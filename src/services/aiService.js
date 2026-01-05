@@ -3,9 +3,9 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY)
 
-// Get the model - using Gemini 2.5 Flash (stable version)
+// Get the model - using Gemini 2.0 Flash Experimental (current available model as of 2025)
 const model = genAI.getGenerativeModel({
-  model: 'gemini-2.5-flash',
+  model: 'gemini-2.0-flash-exp',
   generationConfig: {
     temperature: 0.9,
     topP: 0.95,
@@ -27,6 +27,11 @@ const model = genAI.getGenerativeModel({
  */
 export async function getFashionAdvice(userMessage, context = {}) {
   try {
+    // Validate API key exists
+    if (!import.meta.env.VITE_GEMINI_API_KEY) {
+      throw new Error('API key not configured')
+    }
+
     const {
       closetItems = [],
       weather = {},
@@ -53,8 +58,19 @@ Posha:`
 
     // Generate response
     const result = await model.generateContent(prompt)
-    const response = await result.response
+    const response = result.response
+
+    // Validate response
+    if (!response) {
+      throw new Error('No response received from AI')
+    }
+
     const text = response.text()
+
+    // Validate text content
+    if (!text || typeof text !== 'string') {
+      throw new Error('Invalid response format from AI')
+    }
 
     // Try to extract suggested items from the closet based on the response
     const suggestedItems = extractSuggestedItems(text, closetItems)
@@ -69,25 +85,43 @@ Posha:`
     console.error('Error details:', {
       message: error.message,
       stack: error.stack,
-      apiKey: import.meta.env.VITE_GEMINI_API_KEY ? 'Present' : 'Missing'
+      apiKey: import.meta.env.VITE_GEMINI_API_KEY ? 'Present' : 'Missing',
+      errorType: error?.status || error?.code || 'Unknown'
     })
 
     // Check for specific error types
     let errorMessage = `I'm having a little wardrobe malfunction right now! 😅 But I'm here to help. Could you try asking me again? I specialize in:\n\n• Outfit recommendations from your closet\n• Shopping advice\n• Mix and match ideas\n• Weather-appropriate styling\n• Occasion-based outfit planning\n\nWhat would you like help with?`
 
-    // Rate limit or quota exceeded errors
-    if (error.message?.includes('429') ||
-        error.message?.includes('quota') ||
-        error.message?.includes('rate limit') ||
-        error.message?.includes('RESOURCE_EXHAUSTED')) {
-      errorMessage = `Oops! I'm getting too many requests right now. 😅 Please wait a moment and try again.\n\nThis happens when:\n• Too many people are chatting with me at once\n• You've sent several messages very quickly\n\nJust give me a minute to catch my breath, and I'll be ready to help with your fashion questions!`
-    }
-
-    // API key issues
-    if (error.message?.includes('API key') ||
+    // API key issues - check first
+    if (!import.meta.env.VITE_GEMINI_API_KEY ||
+        error.message?.includes('API key not configured') ||
+        error.message?.includes('API_KEY_INVALID') ||
         error.message?.includes('401') ||
         error.message?.includes('403')) {
-      errorMessage = `I'm having trouble connecting to my fashion brain right now! 🤔 Please contact support if this persists.\n\nI specialize in:\n• Outfit recommendations\n• Shopping advice\n• Style tips\n\nTry refreshing the page?`
+      errorMessage = `I'm having trouble connecting to my fashion brain right now! 🤔\n\n**Possible issue:** API key may be missing or invalid.\n\nPlease:\n• Check that VITE_GEMINI_API_KEY is set in your .env file\n• Verify the API key is valid in Google AI Studio\n• Restart the development server after updating .env\n\nI specialize in outfit recommendations, shopping advice, and style tips once we're connected!`
+    }
+
+    // Rate limit or quota exceeded errors
+    else if (error.message?.includes('429') ||
+        error.message?.includes('quota') ||
+        error.message?.includes('rate limit') ||
+        error.message?.includes('RESOURCE_EXHAUSTED') ||
+        error?.status === 429) {
+      errorMessage = `Oops! I'm getting too many requests right now. 😅 Please wait a moment and try again.\n\nThis happens when:\n• Too many people are chatting with me at once\n• You've sent several messages very quickly\n• Daily API quota has been exceeded\n\nJust give me a minute to catch my breath, and I'll be ready to help with your fashion questions!`
+    }
+
+    // Invalid model or configuration errors
+    else if (error.message?.includes('models/') ||
+        error.message?.includes('not found') ||
+        error.message?.includes('INVALID_ARGUMENT')) {
+      errorMessage = `Hmm, something's not quite right with my configuration! 🤔\n\n**Technical note:** The AI model may be incorrectly configured.\n\nPlease check that the model name 'gemini-2.0-flash-exp' is correct and available. Try refreshing the page!`
+    }
+
+    // Network errors
+    else if (error.message?.includes('fetch') ||
+        error.message?.includes('network') ||
+        error.message?.includes('ENOTFOUND')) {
+      errorMessage = `I can't seem to connect right now! 📡\n\nPlease check:\n• Your internet connection\n• Firewall settings\n• VPN configuration\n\nThen try again!`
     }
 
     // Return a fallback response
