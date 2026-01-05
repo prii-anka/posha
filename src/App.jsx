@@ -73,7 +73,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<MainLayout><FashionChat /></MainLayout>} />
         <Route path="/insights" element={<MainLayout><InsightsGrid /></MainLayout>} />
         <Route path="/planner" element={<MainLayout><Planner /></MainLayout>} />
