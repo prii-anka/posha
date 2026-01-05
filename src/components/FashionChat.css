@@ -22,34 +22,17 @@
   text-align: center;
 }
 
-@keyframes titleGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(255, 22, 148, 0.3));
-  }
-  50% {
-    filter: drop-shadow(0 0 16px rgba(255, 22, 148, 0.6));
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
+/* Continuous animations removed for comfort */
 
 .chat-title {
   font-size: 48px;
   font-weight: var(--font-weight-bold);
   background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
-  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0 0 var(--space-3);
-  animation: titleGlow 3s ease-in-out infinite, float 4s ease-in-out infinite;
+  /* Glow and float animations removed */
 }
 
 .chat-subtitle {
