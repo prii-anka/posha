@@ -2,9 +2,7 @@ import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Landing.css'
 
-function Landing() {
-  const navigate = useNavigate()
-
+function Landing({ onGetStarted }) {
   // Get user's style vibes from profile
   const userProfile = useMemo(() => {
     const storedProfile = localStorage.getItem('poshaProfile')
@@ -128,7 +126,9 @@ function Landing() {
   ]
 
   const handleEnter = () => {
-    navigate('/dashboard')
+    if (onGetStarted) {
+      onGetStarted()
+    }
   }
 
   return (

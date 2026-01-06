@@ -27,8 +27,18 @@ function App() {
     return !hasCompletedOnboarding
   })
 
+  const [hasSeenLanding, setHasSeenLanding] = useState(() => {
+    return localStorage.getItem('poshaHasSeenLanding') === 'true'
+  })
+
   const [isSkipFlow, setIsSkipFlow] = useState(false)
   const [userData, setUserData] = useState(null)
+
+  // Handle landing completion
+  const handleLandingComplete = () => {
+    localStorage.setItem('poshaHasSeenLanding', 'true')
+    setHasSeenLanding(true)
+  }
 
   // Handle auth completion (signup/login)
   const handleAuthComplete = (user) => {
@@ -52,9 +62,14 @@ function App() {
   }
 
   // User flow logic:
-  // 1. Not authenticated & not skip flow -> Show Auth
-  // 2. Authenticated OR skip flow, but onboarding incomplete -> Show Onboarding
-  // 3. Onboarding complete -> Show main app routes
+  // 1. Not seen landing -> Show Landing page
+  // 2. Not authenticated & not skip flow -> Show Auth
+  // 3. Authenticated OR skip flow, but onboarding incomplete -> Show Onboarding
+  // 4. Onboarding complete -> Show main app routes
+
+  if (!hasSeenLanding) {
+    return <Landing onGetStarted={handleLandingComplete} />
+  }
 
   if (!isAuthenticated && !isSkipFlow) {
     return <Auth onComplete={handleAuthComplete} onSkip={handleSkip} />
