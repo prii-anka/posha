@@ -12,20 +12,20 @@
         }
 
         :root {
-            --color-pink: #FFB3D9;
-            --color-pink-light: #FFD6EB;
-            --color-purple: #E0BBE4;
-            --color-mint: #C7EFCF;
-            --color-peach: #FEC89A;
-            --color-text: #2D2D2D;
-            --color-text-light: #666;
+            --color-primary: #D81B60;
+            --color-secondary: #8E24AA;
+            --color-accent: #00ACC1;
+            --color-dark: #1a1a1a;
+            --color-white: #ffffff;
+            --color-gray: #555;
+            --color-light-bg: #f5f5f5;
             --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
             font-family: var(--font-primary);
-            background: linear-gradient(135deg, rgba(255, 179, 217, 0.1), rgba(224, 187, 228, 0.1));
-            color: var(--color-text);
+            background: var(--color-white);
+            color: var(--color-dark);
             overflow-x: hidden;
         }
 
@@ -34,23 +34,19 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            background: var(--color-white);
+            padding: 1.2rem 2.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 3px solid var(--color-primary);
         }
 
         .nav-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary);
         }
 
         .nav-controls {
@@ -60,26 +56,25 @@
         }
 
         .nav-btn {
-            background: none;
-            border: 2px solid var(--color-pink);
-            color: var(--color-pink);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            background: var(--color-primary);
+            border: none;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            transition: all 0.2s ease;
         }
 
         .nav-btn:hover {
-            background: var(--color-pink);
-            color: white;
-            transform: translateY(-2px);
+            background: var(--color-secondary);
+            transform: translateY(-1px);
         }
 
         .slide-indicator {
-            font-size: 0.9rem;
-            color: var(--color-text-light);
-            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-dark);
+            font-weight: 700;
         }
 
         /* Slide Container */
@@ -93,7 +88,7 @@
             min-height: calc(100vh - 80px);
             padding: 4rem 2rem;
             display: none;
-            animation: fadeIn 0.6s ease-in-out;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .slide.active {
@@ -106,7 +101,7 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
@@ -121,27 +116,26 @@
         }
 
         .hero-logo {
-            font-size: 6rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple), var(--color-mint));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 7rem;
+            font-weight: 900;
+            color: var(--color-primary);
             margin-bottom: 1rem;
+            letter-spacing: -2px;
         }
 
         .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 900;
             margin-bottom: 1.5rem;
-            color: var(--color-text);
+            color: var(--color-dark);
         }
 
         .hero-subtitle {
             font-size: 1.5rem;
-            color: var(--color-text-light);
+            color: var(--color-gray);
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 500;
         }
 
         .hero-meta {
@@ -153,22 +147,25 @@
         }
 
         .meta-item {
-            background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: var(--color-light-bg);
+            padding: 1.5rem 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
         }
 
         .meta-label {
-            font-size: 0.9rem;
-            color: var(--color-text-light);
+            font-size: 0.85rem;
+            color: var(--color-gray);
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .meta-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-pink);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--color-dark);
         }
 
         /* Content Slides */
@@ -178,42 +175,40 @@
         }
 
         .slide-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 900;
             margin-bottom: 1rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--color-primary);
         }
 
         .slide-subtitle {
-            font-size: 1.2rem;
-            color: var(--color-text-light);
+            font-size: 1.3rem;
+            color: var(--color-gray);
             text-align: center;
             margin-bottom: 3rem;
+            font-weight: 500;
         }
 
         /* Feature Grid */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .feature-card {
-            background: white;
+            background: var(--color-white);
             padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            border: 2px solid var(--color-light-bg);
+            transition: all 0.2s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
         }
 
         .feature-icon {
@@ -222,78 +217,79 @@
         }
 
         .feature-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--color-text);
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: var(--color-dark);
         }
 
         .feature-desc {
-            font-size: 1rem;
-            color: var(--color-text-light);
+            font-size: 1.05rem;
+            color: var(--color-gray);
             line-height: 1.6;
         }
 
         /* Tech Stack */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .tech-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: var(--color-light-bg);
+            padding: 1.8rem;
+            border-radius: 8px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--color-accent);
         }
 
         .tech-name {
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: var(--color-pink);
+            color: var(--color-dark);
         }
 
         .tech-version {
-            font-size: 0.9rem;
-            color: var(--color-text-light);
+            font-size: 0.95rem;
+            color: var(--color-gray);
+            font-weight: 500;
         }
 
         /* Stats */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
-            padding: 2rem;
-            border-radius: 16px;
+            background: var(--color-primary);
+            padding: 2.5rem;
+            border-radius: 8px;
             text-align: center;
             color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 900;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
         }
 
         /* User Flow */
         .flow-container {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
@@ -301,50 +297,51 @@
         }
 
         .flow-step {
-            background: white;
+            background: var(--color-light-bg);
             padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
             text-align: center;
             max-width: 250px;
-            position: relative;
+            border-top: 4px solid var(--color-secondary);
         }
 
         .flow-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            width: 60px;
+            height: 60px;
+            background: var(--color-secondary);
             color: white;
-            border-radius: 50%;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 900;
             margin: 0 auto 1rem;
         }
 
         .flow-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--color-text);
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: var(--color-dark);
         }
 
         .flow-desc {
-            font-size: 0.9rem;
-            color: var(--color-text-light);
+            font-size: 1rem;
+            color: var(--color-gray);
+            line-height: 1.5;
         }
 
         .flow-arrow {
-            font-size: 2rem;
-            color: var(--color-pink);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            font-weight: 900;
         }
 
         /* Branding */
         .color-palette {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 2rem;
@@ -355,22 +352,23 @@
         }
 
         .color-box {
-            width: 120px;
-            height: 120px;
-            border-radius: 16px;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 140px;
+            height: 140px;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            border: 3px solid var(--color-dark);
         }
 
         .color-name {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--color-text);
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--color-dark);
         }
 
         .color-hex {
-            font-size: 0.8rem;
-            color: var(--color-text-light);
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            font-weight: 600;
         }
 
         /* Key Features List */
@@ -379,40 +377,45 @@
             flex-direction: column;
             gap: 1.5rem;
             margin-top: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .feature-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: var(--color-light-bg);
+            padding: 1.8rem;
+            border-radius: 8px;
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 1.2rem;
+            border-left: 4px solid var(--color-accent);
         }
 
         .feature-check {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            width: 35px;
+            height: 35px;
+            background: var(--color-accent);
             color: white;
-            border-radius: 50%;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-weight: 700;
+            font-weight: 900;
+            font-size: 1.2rem;
         }
 
         .feature-text {
             flex: 1;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--color-gray);
         }
 
         .feature-text strong {
-            color: var(--color-pink);
+            color: var(--color-dark);
+            font-weight: 800;
         }
 
         /* Bottom Navigation */
@@ -420,58 +423,83 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            background: var(--color-white);
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.05);
+            gap: 0.8rem;
+            border-top: 3px solid var(--color-primary);
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background: #ddd;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .dot.active {
-            background: var(--color-pink);
-            width: 30px;
-            border-radius: 6px;
+            background: var(--color-primary);
+            width: 35px;
+            border-radius: 7px;
         }
 
         /* Links */
         .cta-link {
             display: inline-block;
             margin-top: 2rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            padding: 1.2rem 2.5rem;
+            background: var(--color-primary);
             color: white;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 700;
+            border-radius: 6px;
+            font-weight: 800;
             font-size: 1.1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .cta-link:hover {
+            background: var(--color-secondary);
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .highlight-box {
+            background: var(--color-light-bg);
+            border-left: 5px solid var(--color-primary);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .highlight-box h3 {
+            margin-bottom: 1.2rem;
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-box li {
+            padding: 0.7rem 0;
+            font-size: 1.1rem;
+            color: var(--color-gray);
+            font-weight: 500;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero-logo {
-                font-size: 4rem;
+                font-size: 4.5rem;
             }
 
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .hero-subtitle {
@@ -479,7 +507,7 @@
             }
 
             .slide-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .feature-grid {
@@ -487,26 +515,18 @@
             }
 
             .nav-logo {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(255, 179, 217, 0.1), rgba(224, 187, 228, 0.1));
-            border-left: 4px solid var(--color-pink);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-logo">पोsha Portfolio Deck</div>
+        <div class="nav-logo">पोsha</div>
         <div class="nav-controls">
             <span class="slide-indicator"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
-            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="prevSlide()">← Prev</button>
             <button class="nav-btn" onclick="nextSlide()">Next →</button>
         </div>
     </nav>
@@ -552,23 +572,23 @@
                         <div class="stat-number">23</div>
                         <div class="stat-label">Minutes spent daily deciding what to wear</div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" style="background: var(--color-secondary);">
                         <div class="stat-number">40%</div>
                         <div class="stat-label">Of closet never gets worn</div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" style="background: var(--color-accent);">
                         <div class="stat-number">$1,800</div>
                         <div class="stat-label">Wasted annually on unworn clothes</div>
                     </div>
                 </div>
 
                 <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Key Pain Points</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ Decision fatigue every morning</li>
-                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ "Nothing to wear" despite full closet</li>
-                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ Impulse purchases that go unworn</li>
-                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ Weather-inappropriate outfit choices</li>
+                    <h3>Key Pain Points</h3>
+                    <ul>
+                        <li>• Decision fatigue every morning</li>
+                        <li>• "Nothing to wear" despite full closet</li>
+                        <li>• Impulse purchases that go unworn</li>
+                        <li>• Weather-inappropriate outfit choices</li>
                     </ul>
                 </div>
             </div>
@@ -578,7 +598,7 @@
         <div class="slide">
             <div class="content-slide">
                 <h2 class="slide-title">The Solution</h2>
-                <p class="slide-subtitle">AI-powered wardrobe intelligence for smarter fashion decisions</p>
+                <p class="slide-subtitle">AI-powered wardrobe intelligence</p>
 
                 <div class="feature-grid">
                     <div class="feature-card">
@@ -594,7 +614,7 @@
                     <div class="feature-card">
                         <div class="feature-icon">🎯</div>
                         <div class="feature-title">Dress With Intention</div>
-                        <div class="feature-desc">Learn YOUR color palette, fabrics, and proportions. Make every purchase count.</div>
+                        <div class="feature-desc">Learn your color palette, fabrics, and proportions. Make every purchase count.</div>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🤖</div>
@@ -625,49 +645,49 @@
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Fashion Chat AI</strong> — Real-time conversation with Google Gemini AI for personalized style advice, outfit suggestions, and fashion education
+                            <strong>Fashion Chat AI</strong> Real-time conversation with Google Gemini AI for personalized style advice, outfit suggestions, and fashion education
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Digital Closet</strong> — Catalog your wardrobe with photos or text, organize by category, color, and season
+                            <strong>Digital Closet</strong> Catalog your wardrobe with photos or text, organize by category, color, and season
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Outfit Planner</strong> — Weekly outfit planning with weather integration and occasion-based suggestions
+                            <strong>Outfit Planner</strong> Weekly outfit planning with weather integration and occasion-based suggestions
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Style Insights</strong> — Color analysis, fabric preferences, wear frequency tracking, and style pattern recognition
+                            <strong>Style Insights</strong> Color analysis, fabric preferences, wear frequency tracking, and style pattern recognition
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Learn Studio</strong> — Fashion education built-in with style guides, color theory, and wardrobe building tips
+                            <strong>Learn Studio</strong> Fashion education built-in with style guides, color theory, and wardrobe building tips
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Shop Studio</strong> — Smart shopping recommendations to fill real gaps in your wardrobe, not impulse buys
+                            <strong>Shop Studio</strong> Smart shopping recommendations to fill real gaps in your wardrobe, not impulse buys
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Personalized Onboarding</strong> — 8-slide profile setup capturing style vibes, preferences, goals, and pain points
+                            <strong>Personalized Onboarding</strong> 8-slide profile setup capturing style vibes, preferences, goals, and pain points
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">✓</div>
                         <div class="feature-text">
-                            <strong>Theme System</strong> — Three light themes (Soft Muse, Bold Edge, Natural Flow) plus dark mode with custom color palettes
+                            <strong>Theme System</strong> Three light themes (Soft Muse, Bold Edge, Natural Flow) plus dark mode with custom color palettes
                         </div>
                     </div>
                 </div>
@@ -678,7 +698,7 @@
         <div class="slide">
             <div class="content-slide">
                 <h2 class="slide-title">Tech Stack</h2>
-                <p class="slide-subtitle">Modern, scalable architecture built with cutting-edge technologies</p>
+                <p class="slide-subtitle">Modern, scalable architecture</p>
 
                 <div class="tech-grid">
                     <div class="tech-item">
@@ -724,13 +744,13 @@
                 </div>
 
                 <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Architecture Highlights</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;">✦ Component-based architecture with React hooks</li>
-                        <li style="padding: 0.5rem 0;">✦ Real-time AI chat with Google Gemini API integration</li>
-                        <li style="padding: 0.5rem 0;">✦ Firebase Firestore for scalable NoSQL database</li>
-                        <li style="padding: 0.5rem 0;">✦ Context-based theme system with CSS variables</li>
-                        <li style="padding: 0.5rem 0;">✦ Responsive design with mobile-first approach</li>
+                    <h3>Architecture Highlights</h3>
+                    <ul>
+                        <li>• Component-based architecture with React hooks</li>
+                        <li>• Real-time AI chat with Google Gemini API</li>
+                        <li>• Firebase Firestore for scalable NoSQL database</li>
+                        <li>• Context-based theme system with CSS variables</li>
+                        <li>• Responsive design with mobile-first approach</li>
                     </ul>
                 </div>
             </div>
@@ -764,18 +784,18 @@
                     <div class="flow-step">
                         <div class="flow-number">4</div>
                         <div class="flow-title">Dashboard</div>
-                        <div class="flow-desc">Main app with AI chat, closet, planner, insights, and more</div>
+                        <div class="flow-desc">Main app with AI chat, closet, planner, insights</div>
                     </div>
                 </div>
 
                 <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Daily Usage Flow</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;">✦ Chat with AI for instant outfit suggestions</li>
-                        <li style="padding: 0.5rem 0;">✦ Browse digital closet and plan weekly outfits</li>
-                        <li style="padding: 0.5rem 0;">✦ Log what you wear to train AI on preferences</li>
-                        <li style="padding: 0.5rem 0;">✦ Review insights on wear patterns and style trends</li>
-                        <li style="padding: 0.5rem 0;">✦ Get smart shopping recommendations</li>
+                    <h3>Daily Usage Flow</h3>
+                    <ul>
+                        <li>• Chat with AI for instant outfit suggestions</li>
+                        <li>• Browse digital closet and plan weekly outfits</li>
+                        <li>• Log what you wear to train AI on preferences</li>
+                        <li>• Review insights on wear patterns and style trends</li>
+                        <li>• Get smart shopping recommendations</li>
                     </ul>
                 </div>
             </div>
@@ -784,51 +804,46 @@
         <!-- Slide 7: Branding & Design -->
         <div class="slide">
             <div class="content-slide">
-                <h2 class="slide-title">Branding & Design System</h2>
+                <h2 class="slide-title">Branding & Design</h2>
                 <p class="slide-subtitle">Cohesive visual identity with personality</p>
 
                 <div style="text-align: center; margin: 2rem 0;">
-                    <div style="font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, #FFB3D9, #E0BBE4, #C7EFCF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">पोsha</div>
-                    <p style="font-size: 1.2rem; color: var(--color-text-light);">Sanskrit-inspired name meaning "nourishment" — nourish your style, not your closet clutter</p>
+                    <div style="font-size: 5rem; font-weight: 900; color: var(--color-primary); margin-bottom: 1rem;">पोsha</div>
+                    <p style="font-size: 1.3rem; color: var(--color-gray); font-weight: 500;">From Sanskrit "poshakh" meaning attire. Your intelligent wardrobe companion.</p>
                 </div>
 
-                <h3 style="text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--color-pink);">Color Palette</h3>
+                <h3 style="text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; font-size: 1.8rem; color: var(--color-primary); font-weight: 800;">Color Palette</h3>
                 <div class="color-palette">
                     <div class="color-swatch">
-                        <div class="color-box" style="background: #FFB3D9;"></div>
-                        <div class="color-name">Soft Pink</div>
-                        <div class="color-hex">#FFB3D9</div>
+                        <div class="color-box" style="background: #D81B60;"></div>
+                        <div class="color-name">Primary Pink</div>
+                        <div class="color-hex">#D81B60</div>
                     </div>
                     <div class="color-swatch">
-                        <div class="color-box" style="background: #FFD6EB;"></div>
-                        <div class="color-name">Light Pink</div>
-                        <div class="color-hex">#FFD6EB</div>
+                        <div class="color-box" style="background: #8E24AA;"></div>
+                        <div class="color-name">Purple</div>
+                        <div class="color-hex">#8E24AA</div>
                     </div>
                     <div class="color-swatch">
-                        <div class="color-box" style="background: #E0BBE4;"></div>
-                        <div class="color-name">Lavender</div>
-                        <div class="color-hex">#E0BBE4</div>
+                        <div class="color-box" style="background: #00ACC1;"></div>
+                        <div class="color-name">Accent Cyan</div>
+                        <div class="color-hex">#00ACC1</div>
                     </div>
                     <div class="color-swatch">
-                        <div class="color-box" style="background: #C7EFCF;"></div>
-                        <div class="color-name">Mint</div>
-                        <div class="color-hex">#C7EFCF</div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-box" style="background: #FEC89A;"></div>
-                        <div class="color-name">Peach</div>
-                        <div class="color-hex">#FEC89A</div>
+                        <div class="color-box" style="background: #1a1a1a;"></div>
+                        <div class="color-name">Dark</div>
+                        <div class="color-hex">#1a1a1a</div>
                     </div>
                 </div>
 
                 <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Design Principles</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;">✦ Calm, non-intrusive animations (learned from user feedback)</li>
-                        <li style="padding: 0.5rem 0;">✦ Accessible typography with system fonts</li>
-                        <li style="padding: 0.5rem 0;">✦ Hover-only interactions to reduce motion sickness</li>
-                        <li style="padding: 0.5rem 0;">✦ Subtle background gradients at 15% opacity for readability</li>
-                        <li style="padding: 0.5rem 0;">✦ Card-based layouts with generous white space</li>
+                    <h3>Design Principles</h3>
+                    <ul>
+                        <li>• Calm, non-intrusive animations (user feedback driven)</li>
+                        <li>• Accessible typography with system fonts</li>
+                        <li>• Hover-only interactions to reduce motion sickness</li>
+                        <li>• Subtle background gradients for readability</li>
+                        <li>• Card-based layouts with generous white space</li>
                     </ul>
                 </div>
             </div>
@@ -838,55 +853,55 @@
         <div class="slide">
             <div class="content-slide">
                 <h2 class="slide-title">Technical Achievements</h2>
-                <p class="slide-subtitle">Key development highlights and challenges solved</p>
+                <p class="slide-subtitle">Key development highlights</p>
 
                 <div class="features-list">
                     <div class="feature-item">
                         <div class="feature-check">⚡</div>
                         <div class="feature-text">
-                            <strong>Real-time AI Integration</strong> — Successfully integrated Google Gemini 2.0 Flash AI with streaming responses, error handling, and quota management
+                            <strong>Real-time AI Integration</strong> Successfully integrated Google Gemini 2.0 Flash AI with streaming responses, error handling, and quota management
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">🔐</div>
                         <div class="feature-text">
-                            <strong>Secure Authentication</strong> — Firebase Authentication with email/password and Google OAuth, persistent sessions with localStorage
+                            <strong>Secure Authentication</strong> Firebase Authentication with email/password and Google OAuth, persistent sessions with localStorage
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">🎨</div>
                         <div class="feature-text">
-                            <strong>Dynamic Theme System</strong> — Context-based theming with CSS custom properties, supports 4 themes with instant switching
+                            <strong>Dynamic Theme System</strong> Context-based theming with CSS custom properties, supports 4 themes with instant switching
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">📱</div>
                         <div class="feature-text">
-                            <strong>Responsive Design</strong> — Mobile-first approach with breakpoints for tablet and desktop, tested across devices
+                            <strong>Responsive Design</strong> Mobile-first approach with breakpoints for tablet and desktop, tested across devices
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">♿</div>
                         <div class="feature-text">
-                            <strong>Accessibility Focused</strong> — Reduced motion based on user feedback, ARIA labels, keyboard navigation, semantic HTML
+                            <strong>Accessibility Focused</strong> Reduced motion based on user feedback, ARIA labels, keyboard navigation, semantic HTML
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">🚀</div>
                         <div class="feature-text">
-                            <strong>Performance Optimized</strong> — Code splitting with React Router, lazy loading, optimized bundle size with Vite
+                            <strong>Performance Optimized</strong> Code splitting with React Router, lazy loading, optimized bundle size with Vite
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">🔄</div>
                         <div class="feature-text">
-                            <strong>Iterative Development</strong> — User feedback-driven design: reduced animations from user complaints about motion sickness
+                            <strong>Iterative Development</strong> User feedback-driven design: reduced animations from user complaints about motion sickness
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-check">📊</div>
                         <div class="feature-text">
-                            <strong>State Management</strong> — Complex multi-step onboarding flow with validation, profile data persistence, and skip functionality
+                            <strong>State Management</strong> Complex multi-step onboarding flow with validation, profile data persistence, and skip functionality
                         </div>
                     </div>
                 </div>
@@ -904,11 +919,11 @@
                         <div class="stat-number">80%</div>
                         <div class="stat-label">Reduction in decision time</div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" style="background: var(--color-secondary);">
                         <div class="stat-number">30%</div>
                         <div class="stat-label">Fewer impulse purchases</div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" style="background: var(--color-accent);">
                         <div class="stat-number">2+ hrs</div>
                         <div class="stat-label">Saved per week</div>
                     </div>
@@ -938,13 +953,13 @@
                 </div>
 
                 <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Project Learning Outcomes</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;">✦ Advanced React patterns with hooks and context</li>
-                        <li style="padding: 0.5rem 0;">✦ AI API integration and prompt engineering</li>
-                        <li style="padding: 0.5rem 0;">✦ Firebase ecosystem (Auth, Firestore, Analytics)</li>
-                        <li style="padding: 0.5rem 0;">✦ User feedback iteration and accessibility improvements</li>
-                        <li style="padding: 0.5rem 0;">✦ Complex state management for multi-step flows</li>
+                    <h3>Learning Outcomes</h3>
+                    <ul>
+                        <li>• Advanced React patterns with hooks and context</li>
+                        <li>• AI API integration and prompt engineering</li>
+                        <li>• Firebase ecosystem (Auth, Firestore, Analytics)</li>
+                        <li>• User feedback iteration and accessibility</li>
+                        <li>• Complex state management for multi-step flows</li>
                     </ul>
                 </div>
             </div>
@@ -959,17 +974,17 @@
 
                 <div style="margin-top: 3rem;">
                     <a href="https://github.com/prii-anka/posha" target="_blank" class="cta-link" style="margin-right: 1rem;">View on GitHub</a>
-                    <a href="#" class="cta-link">Live Demo (Coming Soon)</a>
+                    <a href="#" class="cta-link" style="background: var(--color-accent);">Live Demo (Coming Soon)</a>
                 </div>
 
-                <div class="highlight-box" style="margin-top: 3rem; max-width: 600px; text-align: left;">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Future Enhancements</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;">✦ Mobile app (React Native)</li>
-                        <li style="padding: 0.5rem 0;">✦ Computer vision for automatic outfit cataloging</li>
-                        <li style="padding: 0.5rem 0;">✦ Social features (share outfits, get feedback)</li>
-                        <li style="padding: 0.5rem 0;">✦ Shopping API integrations for real recommendations</li>
-                        <li style="padding: 0.5rem 0;">✦ Advanced analytics dashboard</li>
+                <div class="highlight-box" style="margin-top: 3rem; max-width: 700px; text-align: left;">
+                    <h3>Future Enhancements</h3>
+                    <ul>
+                        <li>• Mobile app (React Native)</li>
+                        <li>• Computer vision for automatic outfit cataloging</li>
+                        <li>• Social features (share outfits, get feedback)</li>
+                        <li>• Shopping API integrations for real recommendations</li>
+                        <li>• Advanced analytics dashboard</li>
                     </ul>
                 </div>
             </div>
