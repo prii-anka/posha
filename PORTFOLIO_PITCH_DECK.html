@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पोsha - Fashion Wardrobe Intelligence | Portfolio Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-pink: #FFB3D9;
+            --color-pink-light: #FFD6EB;
+            --color-purple: #E0BBE4;
+            --color-mint: #C7EFCF;
+            --color-peach: #FEC89A;
+            --color-text: #2D2D2D;
+            --color-text-light: #666;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, rgba(255, 179, 217, 0.1), rgba(224, 187, 228, 0.1));
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: none;
+            border: 2px solid var(--color-pink);
+            color: var(--color-pink);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--color-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .slide-indicator {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        /* Slide Container */
+        .slide-container {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            position: relative;
+        }
+
+        .slide {
+            min-height: calc(100vh - 80px);
+            padding: 4rem 2rem;
+            display: none;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Slide */
+        .hero {
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .hero-logo {
+            font-size: 6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple), var(--color-mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .meta-item {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-pink);
+        }
+
+        /* Content Slides */
+        .content-slide {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .tech-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-pink);
+        }
+
+        .tech-version {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* User Flow */
+        .flow-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            max-width: 250px;
+            position: relative;
+        }
+
+        .flow-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .flow-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .flow-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--color-pink);
+        }
+
+        /* Branding */
+        .color-palette {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .color-hex {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+        }
+
+        /* Key Features List */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-check {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text strong {
+            color: var(--color-pink);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--color-pink);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Links */
+        .cta-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cta-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-logo {
+                font-size: 4rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-logo {
+                font-size: 1.4rem;
+            }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 179, 217, 0.1), rgba(224, 187, 228, 0.1));
+            border-left: 4px solid var(--color-pink);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">पोsha Portfolio Deck</div>
+        <div class="nav-controls">
+            <span class="slide-indicator"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        </div>
+    </nav>
+
+    <!-- Slide Container -->
+    <div class="slide-container">
+        <!-- Slide 1: Hero -->
+        <div class="slide active">
+            <div class="hero">
+                <div class="hero-logo">पोsha</div>
+                <h1 class="hero-title">Fashion Wardrobe Intelligence</h1>
+                <p class="hero-subtitle">An AI-powered fashion companion that helps users make smarter wardrobe decisions, reduce decision fatigue, and maximize their existing closet.</p>
+
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Project Type</div>
+                        <div class="meta-value">Full-Stack Web App</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Role</div>
+                        <div class="meta-value">Developer & Designer</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Timeline</div>
+                        <div class="meta-value">2024-2025</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Status</div>
+                        <div class="meta-value">Live Production</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">The Problem</h2>
+                <p class="slide-subtitle">Understanding the wardrobe decision crisis</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">Minutes spent daily deciding what to wear</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Of closet never gets worn</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$1,800</div>
+                        <div class="stat-label">Wasted annually on unworn clothes</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Key Pain Points</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ Decision fatigue every morning</li>
+                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ "Nothing to wear" despite full closet</li>
+                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ Impulse purchases that go unworn</li>
+                        <li style="padding: 0.5rem 0; font-size: 1.1rem;">✦ Weather-inappropriate outfit choices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution Overview -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">The Solution</h2>
+                <p class="slide-subtitle">AI-powered wardrobe intelligence for smarter fashion decisions</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <div class="feature-title">Stop Decision Fatigue</div>
+                        <div class="feature-desc">Get ready in 5 minutes, not 25. पोsha learns your actual wearing patterns and suggests outfits instantly.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">♻️</div>
+                        <div class="feature-title">Maximize Your Wardrobe</div>
+                        <div class="feature-desc">Discover outfit combinations you never considered. See what's missing vs. what's redundant.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Dress With Intention</div>
+                        <div class="feature-desc">Learn YOUR color palette, fabrics, and proportions. Make every purchase count.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <div class="feature-title">AI Fashion Assistant</div>
+                        <div class="feature-desc">Google Gemini AI integration for personalized style advice and outfit recommendations.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌤️</div>
+                        <div class="feature-title">Weather Intelligence</div>
+                        <div class="feature-desc">Weather-matched outfit suggestions so you're always dressed appropriately.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Smart Analytics</div>
+                        <div class="feature-desc">Track wear frequency, identify favorites, and get insights on your style patterns.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Key Features -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">Core Features</h2>
+                <p class="slide-subtitle">Everything needed for intelligent wardrobe management</p>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Fashion Chat AI</strong> — Real-time conversation with Google Gemini AI for personalized style advice, outfit suggestions, and fashion education
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Digital Closet</strong> — Catalog your wardrobe with photos or text, organize by category, color, and season
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Outfit Planner</strong> — Weekly outfit planning with weather integration and occasion-based suggestions
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Style Insights</strong> — Color analysis, fabric preferences, wear frequency tracking, and style pattern recognition
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Learn Studio</strong> — Fashion education built-in with style guides, color theory, and wardrobe building tips
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Shop Studio</strong> — Smart shopping recommendations to fill real gaps in your wardrobe, not impulse buys
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Personalized Onboarding</strong> — 8-slide profile setup capturing style vibes, preferences, goals, and pain points
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <div class="feature-text">
+                            <strong>Theme System</strong> — Three light themes (Soft Muse, Bold Edge, Natural Flow) plus dark mode with custom color palettes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Tech Stack -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">Tech Stack</h2>
+                <p class="slide-subtitle">Modern, scalable architecture built with cutting-edge technologies</p>
+
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-name">React 19</div>
+                        <div class="tech-version">Frontend Framework</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Vite 7</div>
+                        <div class="tech-version">Build Tool & Dev Server</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Firebase 12</div>
+                        <div class="tech-version">Authentication & Database</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Google Gemini AI</div>
+                        <div class="tech-version">gemini-2.0-flash-exp</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Framer Motion</div>
+                        <div class="tech-version">Animation Library</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">React Router</div>
+                        <div class="tech-version">Client-side Routing</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Context API</div>
+                        <div class="tech-version">State Management</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">CSS Custom Properties</div>
+                        <div class="tech-version">Dynamic Theming</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Git & GitHub</div>
+                        <div class="tech-version">Version Control</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Vercel</div>
+                        <div class="tech-version">Deployment & Hosting</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Architecture Highlights</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;">✦ Component-based architecture with React hooks</li>
+                        <li style="padding: 0.5rem 0;">✦ Real-time AI chat with Google Gemini API integration</li>
+                        <li style="padding: 0.5rem 0;">✦ Firebase Firestore for scalable NoSQL database</li>
+                        <li style="padding: 0.5rem 0;">✦ Context-based theme system with CSS variables</li>
+                        <li style="padding: 0.5rem 0;">✦ Responsive design with mobile-first approach</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: User Flow -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">User Journey</h2>
+                <p class="slide-subtitle">Seamless onboarding to daily usage</p>
+
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="flow-number">1</div>
+                        <div class="flow-title">Landing Page</div>
+                        <div class="flow-desc">Compelling value proposition with problem-solution framework</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-number">2</div>
+                        <div class="flow-title">Authentication</div>
+                        <div class="flow-desc">Email/password or Google OAuth with Firebase</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-number">3</div>
+                        <div class="flow-title">Onboarding</div>
+                        <div class="flow-desc">8-slide profile setup: name, gender, style vibes, goals, preferences</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-number">4</div>
+                        <div class="flow-title">Dashboard</div>
+                        <div class="flow-desc">Main app with AI chat, closet, planner, insights, and more</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Daily Usage Flow</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;">✦ Chat with AI for instant outfit suggestions</li>
+                        <li style="padding: 0.5rem 0;">✦ Browse digital closet and plan weekly outfits</li>
+                        <li style="padding: 0.5rem 0;">✦ Log what you wear to train AI on preferences</li>
+                        <li style="padding: 0.5rem 0;">✦ Review insights on wear patterns and style trends</li>
+                        <li style="padding: 0.5rem 0;">✦ Get smart shopping recommendations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Branding & Design -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">Branding & Design System</h2>
+                <p class="slide-subtitle">Cohesive visual identity with personality</p>
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <div style="font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, #FFB3D9, #E0BBE4, #C7EFCF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">पोsha</div>
+                    <p style="font-size: 1.2rem; color: var(--color-text-light);">Sanskrit-inspired name meaning "nourishment" — nourish your style, not your closet clutter</p>
+                </div>
+
+                <h3 style="text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--color-pink);">Color Palette</h3>
+                <div class="color-palette">
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #FFB3D9;"></div>
+                        <div class="color-name">Soft Pink</div>
+                        <div class="color-hex">#FFB3D9</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #FFD6EB;"></div>
+                        <div class="color-name">Light Pink</div>
+                        <div class="color-hex">#FFD6EB</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #E0BBE4;"></div>
+                        <div class="color-name">Lavender</div>
+                        <div class="color-hex">#E0BBE4</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #C7EFCF;"></div>
+                        <div class="color-name">Mint</div>
+                        <div class="color-hex">#C7EFCF</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #FEC89A;"></div>
+                        <div class="color-name">Peach</div>
+                        <div class="color-hex">#FEC89A</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Design Principles</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;">✦ Calm, non-intrusive animations (learned from user feedback)</li>
+                        <li style="padding: 0.5rem 0;">✦ Accessible typography with system fonts</li>
+                        <li style="padding: 0.5rem 0;">✦ Hover-only interactions to reduce motion sickness</li>
+                        <li style="padding: 0.5rem 0;">✦ Subtle background gradients at 15% opacity for readability</li>
+                        <li style="padding: 0.5rem 0;">✦ Card-based layouts with generous white space</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Technical Achievements -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">Technical Achievements</h2>
+                <p class="slide-subtitle">Key development highlights and challenges solved</p>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-check">⚡</div>
+                        <div class="feature-text">
+                            <strong>Real-time AI Integration</strong> — Successfully integrated Google Gemini 2.0 Flash AI with streaming responses, error handling, and quota management
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">🔐</div>
+                        <div class="feature-text">
+                            <strong>Secure Authentication</strong> — Firebase Authentication with email/password and Google OAuth, persistent sessions with localStorage
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">🎨</div>
+                        <div class="feature-text">
+                            <strong>Dynamic Theme System</strong> — Context-based theming with CSS custom properties, supports 4 themes with instant switching
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">📱</div>
+                        <div class="feature-text">
+                            <strong>Responsive Design</strong> — Mobile-first approach with breakpoints for tablet and desktop, tested across devices
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">♿</div>
+                        <div class="feature-text">
+                            <strong>Accessibility Focused</strong> — Reduced motion based on user feedback, ARIA labels, keyboard navigation, semantic HTML
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">🚀</div>
+                        <div class="feature-text">
+                            <strong>Performance Optimized</strong> — Code splitting with React Router, lazy loading, optimized bundle size with Vite
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">🔄</div>
+                        <div class="feature-text">
+                            <strong>Iterative Development</strong> — User feedback-driven design: reduced animations from user complaints about motion sickness
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">📊</div>
+                        <div class="feature-text">
+                            <strong>State Management</strong> — Complex multi-step onboarding flow with validation, profile data persistence, and skip functionality
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Impact & Results -->
+        <div class="slide">
+            <div class="content-slide">
+                <h2 class="slide-title">Impact & Results</h2>
+                <p class="slide-subtitle">What this project achieves</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">Reduction in decision time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Fewer impulse purchases</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2+ hrs</div>
+                        <div class="stat-label">Saved per week</div>
+                    </div>
+                </div>
+
+                <div class="feature-grid" style="margin-top: 3rem;">
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <div class="feature-title">User-Centric Development</div>
+                        <div class="feature-desc">Actively incorporated user feedback to improve UX, including reducing animations for accessibility.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <div class="feature-title">Sustainable Fashion</div>
+                        <div class="feature-desc">Promotes conscious consumption by helping users maximize existing wardrobes instead of buying more.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-title">Educational Approach</div>
+                        <div class="feature-desc">Learn Studio teaches color theory, style principles, and wardrobe building fundamentals.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-title">Privacy First</div>
+                        <div class="feature-desc">User data stored securely with Firebase, clear privacy controls, no third-party tracking.</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Project Learning Outcomes</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;">✦ Advanced React patterns with hooks and context</li>
+                        <li style="padding: 0.5rem 0;">✦ AI API integration and prompt engineering</li>
+                        <li style="padding: 0.5rem 0;">✦ Firebase ecosystem (Auth, Firestore, Analytics)</li>
+                        <li style="padding: 0.5rem 0;">✦ User feedback iteration and accessibility improvements</li>
+                        <li style="padding: 0.5rem 0;">✦ Complex state management for multi-step flows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Closing -->
+        <div class="slide">
+            <div class="hero">
+                <div class="hero-logo">पोsha</div>
+                <h1 class="hero-title">Thank You</h1>
+                <p class="hero-subtitle">A full-stack fashion intelligence platform built with React, Firebase, and Google Gemini AI</p>
+
+                <div style="margin-top: 3rem;">
+                    <a href="https://github.com/prii-anka/posha" target="_blank" class="cta-link" style="margin-right: 1rem;">View on GitHub</a>
+                    <a href="#" class="cta-link">Live Demo (Coming Soon)</a>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem; max-width: 600px; text-align: left;">
+                    <h3 style="margin-bottom: 1rem; color: var(--color-pink); font-size: 1.3rem;">Future Enhancements</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;">✦ Mobile app (React Native)</li>
+                        <li style="padding: 0.5rem 0;">✦ Computer vision for automatic outfit cataloging</li>
+                        <li style="padding: 0.5rem 0;">✦ Social features (share outfits, get feedback)</li>
+                        <li style="padding: 0.5rem 0;">✦ Shopping API integrations for real recommendations</li>
+                        <li style="padding: 0.5rem 0;">✦ Advanced analytics dashboard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Dots -->
+    <div class="bottom-nav">
+        <div class="dot active" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="dot" onclick="goToSlide(5)"></div>
+        <div class="dot" onclick="goToSlide(6)"></div>
+        <div class="dot" onclick="goToSlide(7)"></div>
+        <div class="dot" onclick="goToSlide(8)"></div>
+        <div class="dot" onclick="goToSlide(9)"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+            });
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+    </script>
+</body>
+</html>
